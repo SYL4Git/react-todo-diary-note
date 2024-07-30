@@ -1,0 +1,62 @@
+@charset "utf-8";
+/* todo strt */
+
+/* todoInsert strt */
+form {
+    text-align: center;
+}
+
+input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border-radius: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+}
+
+input[type="checkbox"]:checked+span {
+    text-decoration: line-through;
+}
+
+.progress {
+    height: 20px;
+    background-color: #4caf50;
+    width: 0%;
+    transition: width .5s ease;
+}
+
+/* todoInsert end */
+/* todoContents strt */
+.todoContents {
+    list-style-type: none;
+    padding: 0;
+}
+
+.todoContents li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.todoContents li input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.congratsMessage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.congratsMessage h2 {
+    font-size: 32px;
+}
+
+.congratsMessage p {
+    font-size: 20px;
+}
+
+/* todoContents end */
+/* todo end */

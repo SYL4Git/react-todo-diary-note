@@ -1,10 +1,13 @@
+import '../css/Header.css';
+
 const Header = () => {
 	return (
-		<section class='header'>
-			<h1 class='banner'>To Do List</h1>
-			<div class='links'>
-				<button class='diary'>Diary</button>
-				<button class='notes'>Notes</button>
+		<section className='header'>
+			<h1 className='banner'>To Do List</h1>
+			<div className='links'>
+				<button className='todoList'>To do list</button>
+				<button className='diary'>Diary</button>
+				<button className='notes'>Notes</button>
 			</div>
 		</section>
 	);

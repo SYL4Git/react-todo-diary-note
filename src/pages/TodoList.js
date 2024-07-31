@@ -62,6 +62,22 @@ const TodoList = () => {
 						할일 추가
 					</button>
 				</form>
+				<div className='progressBar'>
+					<div
+						className='progress'
+						style={{ width: progress + '%' }}
+					></div>
+					<div
+						className={`congrats ${
+							todos.length > 0 && todos.every((todo) => todo.completed)
+								? 'visible'
+								: ''
+						}`}
+					>
+						<h2>축하합니다!</h2>
+						<p>모든 할 일을 완료했습니다.</p>
+					</div>
+				</div>
 				<ul className='todo-list'>
 					{todos.map((todo, index) => (
 						<li key={index}>
@@ -75,25 +91,7 @@ const TodoList = () => {
 						</li>
 					))}
 				</ul>
-				<div className='progressBar'>
-					<div
-						className='progress'
-						style={{ width: progress + '%' }}
-					></div>
-					{todos.length > 0 && todos.every((todo) => todo.completed) && (
-						<div className='congrats'>
-							축하합니다! 모든 할 일을 완료했습니다.
-						</div>
-					)}
-				</div>
 			</div>
-			{/* <div className='todoContentsContainer'>
-				<ul className='todoContents'></ul>
-				<div className='congratsMessage'>
-					<h2>축하합니다!</h2>
-					<p>해야할 일을 모두 완료하셨습니다.</p>
-				</div>
-			</div> */}
 		</section>
 	);
 };

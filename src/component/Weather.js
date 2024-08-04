@@ -53,6 +53,10 @@ const Weather = () => {
 				saveWeather(newWeather);
 			})
 			.catch((error) => {
+				console.error(
+					'Error fetching weather data from weather.js:',
+					error
+				); // error log added
 				alert(error);
 			});
 	};

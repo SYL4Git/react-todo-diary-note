@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import '../css/TodoList.css';
-import Weather from '../component/Weather';
+import Weather from '../component/Weather.js';
 
 const TodoList = () => {
 	const [todos, setTodos] = useState([]);

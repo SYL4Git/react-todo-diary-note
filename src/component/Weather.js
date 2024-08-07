@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import useGeolocation from 'react-hook-geolocation';
 
 import '../css/Weather.css';
+
+const ComponentWithGeolocation = () => {
+	const geolocation = useGeolocation();
+};
 
 const Weather = () => {
 	const [weather, setWeather] = useState([]);
@@ -32,13 +38,14 @@ const Weather = () => {
 	};
 
 	const getWeather = (lat, lon) => {
-		fetch(`/weather?lat=${lat}&lon=${lon}`)
-			.then((response) => response.json())
-			.then((json) => {
-				const temperature = json.main.temp;
-				const place = json.name;
-				const description = json.weather[0].description;
-				const iconUrl = json.iconUrl;
+		axios
+			.get(`/weather?lat=${lat}&lon=${lon}`)
+			.then((response) => {
+				const data = response.data;
+				const temperature = data.main.temp;
+				const place = data.name;
+				const description = data.weather[0].description;
+				const iconUrl = data.iconUrl;
 
 				setTemperature(`${temperature}℃`);
 				setPlace(place);

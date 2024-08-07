@@ -1,6 +1,18 @@
+// import 'dotevn/config';
+// import express from 'express';
+// import path from 'path';
+// import axios from 'axios';
+// import { fileURLToPath } from 'url';
+// import { dirname } from 'path';
+
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = dirname(__filename);
+
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
+const axios = require('axios');
+
 const app = express();
 const port = 3000;
 
@@ -14,9 +26,8 @@ app.get('/weather', async (req, res) => {
 	const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=kr`;
 
 	try {
-		const fetch = await import('node-fetch');
-		const response = await fetch.default(url);
-		const data = await response.json();
+		const response = await axios.get(url);
+		const data = response.data;
 
 		// openweather API 의 아이콘 URL 생성
 		const iconCode = data.weather[0].icon;

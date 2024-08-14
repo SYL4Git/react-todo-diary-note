@@ -1,30 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { fetchCoordinates, fetchWeatherData } from '../api/request';
 
 import '../css/Weather.css';
 
 const Weather = ({ cityName }) => {
 	const [weatherData, setWeatherData] = useState(null);
+	const [loading, setLoading] = useState(true);
 
-	useEffect(() => {
-		const fetchWeather = async () => {
-			const coordinates = await fetchCoordinates(cityName);
-
-			if (coordinates) {
-				const data = await fetchWeatherData(
-					coordinates.lat,
-					coordinates.lon
-				);
-				setWeatherData(data);
-			}
-		};
-
-		fetchWeather();
+	const fetchWeather = useCallback(async () => {
+		setLoading(true);
+		const coordinates = await fetchCoordinates(cityName);
+		if (coordinates) {
+			const data = await fetchWeatherData(coordinates.lat, coordinates.lon);
+			setWeatherData(data);
+		}
+		setLoading(false);
 	}, [cityName]);
 
-	if (!weatherData) {
-		return <div>Loading</div>;
+	useEffect(() => {
+		fetchWeather();
+	}, [fetchWeather]);
+
+	if (loading) {
+		return <div>Loading...</div>;
 	}
+
+	if (!weatherData) {
+		return <div>Error loading weather data</div>;
+	}
+
+	const iconUrl = `https://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png`;
 
 	return (
 		<section className='weather'>
@@ -38,9 +43,11 @@ const Weather = ({ cityName }) => {
 						<img className='icon' src={iconUrl} alt='weatherIcon' />
 					</dt>
 					<dt className='descriptionContainer'>설명:</dt>
-					<dd className='description'>{description}</dd>
+					<dd className='description'>
+						{weatherData.current.weather[0].description}
+					</dd>
 				</dl>
-				<button className='loadWeather' onClick={handleButtonClick}>
+				<button className='loadWeather' onClick={fetchWeather}>
 					날씨 불러오기
 				</button>
 			</div>

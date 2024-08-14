@@ -9,6 +9,7 @@ const openWeatherInstance = axios.create({
 	params: {
 		appid: API_KEY,
 		units: 'metric',
+		lang: 'kr',
 	},
 });
 

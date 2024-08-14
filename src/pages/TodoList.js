@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import '../css/TodoList.css';
 import Weather from '../component/Weather.js';
+import Header from '../component/Header.js';
 
 const TodoList = () => {
 	const [todos, setTodos] = useState([]);
@@ -50,6 +51,7 @@ const TodoList = () => {
 
 	return (
 		<section className='todo'>
+			<Header />
 			<Weather />
 			<div className='todoInsertContainer'>
 				<form onSubmit={addTodo} className='todo-form'>

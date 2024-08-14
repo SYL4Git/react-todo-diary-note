@@ -21,12 +21,13 @@ export const fetchCoordinates = async (cityName) => {
 	}
 };
 
-export const fetchWeatherData = async (lat, lon) => {
+export const fetchWeatherData = async (lat, lon, icon) => {
 	try {
 		const response = await openWeatherInstance.get('/data/3.0/onecall?', {
 			params: {
 				lat: lat,
 				lon: lon,
+				icon: icon,
 				exclude: 'minutely, hourly',
 			},
 		});

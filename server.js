@@ -1,47 +1,37 @@
-// import 'dotevn/config';
-// import express from 'express';
-// import path from 'path';
-// import axios from 'axios';
-// import { fileURLToPath } from 'url';
-// import { dirname } from 'path';
+// require('dotenv').config();
+// const express = require('express');
+// const path = require('path');
+// const axios = require('axios');
 
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = dirname(__filename);
+// const app = express();
+// const port = 3000;
 
-require('dotenv').config();
-const express = require('express');
-const path = require('path');
-const axios = require('axios');
+// // Serve static files from the 'public' directory
+// app.use(express.static(path.join(__dirname, 'public')));
 
-const app = express();
-const port = 3000;
+// app.get('/weather', async (req, res) => {
+// 	const lat = req.query.lat;
+// 	const lon = req.query.lon;
+// 	const apiKey = process.env.API_KEY;
+// 	const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=kr`;
 
-// Serve static files from the 'public' directory
-app.use(express.static(path.join(__dirname, 'public')));
+// 	try {
+// 		const response = await axios.get(url);
+// 		const data = response.data;
 
-app.get('/weather', async (req, res) => {
-	const lat = req.query.lat;
-	const lon = req.query.lon;
-	const apiKey = process.env.API_KEY;
-	const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=kr`;
+// 		// openweather API 의 아이콘 URL 생성
+// 		const iconCode = data.weather[0].icon;
+// 		const iconUrl = `http://openweathermap.org/img/wn/${iconCode}.png`;
 
-	try {
-		const response = await axios.get(url);
-		const data = response.data;
+// 		// 응답 데이터에 아이콘 url 추가
+// 		data.iconUrl = iconUrl;
+// 		res.json(data);
+// 	} catch (error) {
+// 		console.error('Error fetching weather data from server.js:', error); // error log added
+// 		res.status(500).send(error);
+// 	}
+// });
 
-		// openweather API 의 아이콘 URL 생성
-		const iconCode = data.weather[0].icon;
-		const iconUrl = `http://openweathermap.org/img/wn/${iconCode}.png`;
-
-		// 응답 데이터에 아이콘 url 추가
-		data.iconUrl = iconUrl;
-		res.json(data);
-	} catch (error) {
-		console.error('Error fetching weather data from server.js:', error); // error log added
-		res.status(500).send(error);
-	}
-});
-
-app.listen(port, () => {
-	console.log(`Server is running on http://localhost:${port}`);
-});
+// app.listen(port, () => {
+// 	console.log(`Server is running on http://localhost:${port}`);
+// });

@@ -2,6 +2,7 @@ import openWeatherInstance from './openWeatherInstance.js';
 
 export const fetchCoordinates = async (cityName) => {
 	try {
+		console.log('Fetching coordinates for:', cityName);
 		const response = await openWeatherInstance.get('/geo/1.0/direct', {
 			params: {
 				q: cityName,
@@ -21,13 +22,12 @@ export const fetchCoordinates = async (cityName) => {
 	}
 };
 
-export const fetchWeatherData = async (lat, lon, icon) => {
+export const fetchWeatherData = async (lat, lon) => {
 	try {
-		const response = await openWeatherInstance.get('/data/3.0/onecall?', {
+		const response = await openWeatherInstance.get('/data/3.0/onecall', {
 			params: {
 				lat: lat,
 				lon: lon,
-				icon: icon,
 				exclude: 'minutely, hourly',
 			},
 		});

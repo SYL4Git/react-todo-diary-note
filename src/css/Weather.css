@@ -1,1 +1,15 @@
 @charset "utf-8";
+
+.weatherContainer {
+    margin-top: 20px;
+}
+
+.weatherContainer dl {
+    display: flex;
+    justify-content: center;
+}
+
+.weatherContainer dd,
+dt {
+    margin-right: 14px;
+}

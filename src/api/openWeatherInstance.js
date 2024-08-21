@@ -3,9 +3,10 @@
 import axios from 'axios';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
+console.log(API_KEY);
 
 const openWeatherInstance = axios.create({
-	baseURL: 'https://api.openweathermap.org/data/3.0/onecall?',
+	baseURL: 'https://api.openweathermap.org',
 	params: {
 		appid: API_KEY,
 		units: 'metric',

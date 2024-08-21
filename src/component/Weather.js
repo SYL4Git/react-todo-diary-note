@@ -1,21 +1,68 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { fetchCoordinates, fetchWeatherData } from '../api/request';
+import { fetchWeatherData } from '../api/request.js';
+import openWeatherInstance from '../api/openWeatherInstance.js';
 
 import '../css/Weather.css';
 
-const Weather = ({ cityName }) => {
+const Weather = () => {
 	const [weatherData, setWeatherData] = useState(null);
 	const [loading, setLoading] = useState(true);
+	const [cityName, setCityName] = useState('');
+
+	const fetchUserLocation = () => {
+		return new Promise((resolve, reject) => {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition((position) => {
+					resolve({
+						lat: position.coords.latitude,
+						lon: position.coords.longitude,
+					});
+				}, reject);
+			} else {
+				reject(new Error('Geolocation not supported'));
+			}
+		});
+	};
+
+	const fetchCityName = useCallback(async (lat, lon) => {
+		try {
+			const response = await openWeatherInstance.get('/geo/1.0/reverse', {
+				params: {
+					lat: lat,
+					lon: lon,
+					limit: 1,
+				},
+			});
+			if (response.data.length === 0) {
+				throw new Error('City not found');
+			}
+			return response.data[0].name;
+		} catch (error) {
+			console.error('Error fetching city name:', error);
+			return null;
+		}
+	}, []);
 
 	const fetchWeather = useCallback(async () => {
 		setLoading(true);
-		const coordinates = await fetchCoordinates(cityName);
-		if (coordinates) {
-			const data = await fetchWeatherData(coordinates.lat, coordinates.lon);
-			setWeatherData(data);
+		try {
+			const location = await fetchUserLocation();
+			const cityName = await fetchCityName(location.lat, location.lon);
+			setCityName(cityName);
+
+			if (cityName) {
+				const weatherData = await fetchWeatherData(
+					location.lat,
+					location.lon
+				);
+				setWeatherData(weatherData);
+			}
+		} catch (error) {
+			console.error('Error fetching weather:', error);
+		} finally {
+			setLoading(false);
 		}
-		setLoading(false);
-	}, [cityName]);
+	}, [fetchCityName]);
 
 	useEffect(() => {
 		fetchWeather();

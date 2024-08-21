@@ -69,11 +69,11 @@ const Weather = () => {
 	}, [fetchWeather]);
 
 	if (loading) {
-		return <div>Loading...</div>;
+		return <div className='loading'>Loading...</div>;
 	}
 
 	if (!weatherData) {
-		return <div>Error loading weather data</div>;
+		return <div className='error'>Error loading weather data</div>;
 	}
 
 	const iconUrl = `https://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png`;

@@ -1,5 +1,9 @@
 @charset "utf-8";
 
+.weather {
+    margin-bottom: 50px;
+}
+
 .weatherContainer {
     margin-top: 50px;
 }
@@ -18,4 +22,10 @@ dt {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.loading,
+.error {
+    margin-top: 50px;
+    height: 170px;
 }

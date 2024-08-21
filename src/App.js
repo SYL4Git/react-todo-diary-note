@@ -1,5 +1,10 @@
 // react route = https://www.youtube.com/watch?v=SMq1IQRweDc
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+	BrowserRouter as Router,
+	Routes,
+	Route,
+	Navigate,
+} from 'react-router-dom';
 
 import Header from './component/Header.js';
 import Weather from './component/Weather.js';
@@ -15,6 +20,7 @@ function App() {
 			<Header />
 			<Weather />
 			<Routes>
+				<Route path='/' element={<Navigate to='/TodoList' />} />
 				<Route path='/todolist' element={<TodoList />} />
 				{/* <Route path='/diary' element={<Diary />} /> */}
 				{/* <Route path='/notes' element={<Notes />} /> */}

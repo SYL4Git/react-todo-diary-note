@@ -86,17 +86,21 @@ const Weather = () => {
 					<dd className='place'>{cityName}</dd>
 					<dt className='tempConainer'>기온:</dt>
 					<dd className='temperature'>{weatherData.current.temp}℃</dd>
+					{/* iconContainer 랑 descriptionContainer 를 수직으로 배치하고 위치와 기온 사이 아래에 위치 하도록 수정하기 */}
 					<dt className='iconContainer'>
 						<img className='icon' src={iconUrl} alt='weatherIcon' />
 					</dt>
-					<dt className='descriptionContainer'>설명:</dt>
-					<dd className='description'>
-						{weatherData.current.weather[0].description}
-					</dd>
+					<dt className='descriptionContainer'>
+						<dd className='description'>
+							설명: {weatherData.current.weather[0].description}
+						</dd>
+					</dt>
 				</dl>
-				<button className='loadWeather' onClick={fetchWeather}>
-					날씨 불러오기
-				</button>
+				<div className='loadWeatherContainer'>
+					<button className='loadWeather' onClick={fetchWeather}>
+						날씨 불러오기
+					</button>
+				</div>
 			</div>
 		</section>
 	);

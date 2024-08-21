@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 .weatherContainer {
-    margin-top: 20px;
+    margin-top: 50px;
 }
 
 .weatherContainer dl {
@@ -12,4 +12,10 @@
 .weatherContainer dd,
 dt {
     margin-right: 14px;
+}
+
+.loadWeatherContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

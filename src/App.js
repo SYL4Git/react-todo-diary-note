@@ -22,8 +22,8 @@ function App() {
 			<Routes>
 				<Route path='/' element={<Navigate to='/TodoList' />} />
 				<Route path='/todolist' element={<TodoList />} />
-				<Route path='/diary' element={<Diary />} />
 				<Route path='/notes' element={<Notes />} />
+				<Route path='/diary' element={<Diary />} />
 			</Routes>
 		</Router>
 	);

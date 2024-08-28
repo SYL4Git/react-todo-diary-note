@@ -13,9 +13,9 @@
     justify-content: center;
 }
 
-.weatherContainer dd,
-dt {
-    margin-right: 14px;
+.weatherContainer dt,
+.weatherContainer dd {
+    margin-left: 20px;
 }
 
 .loadWeatherContainer {
@@ -28,4 +28,8 @@ dt {
 .error {
     margin-top: 50px;
     height: 170px;
+}
+
+dd {
+    margin-inline-start: 0px;
 }

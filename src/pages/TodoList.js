@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import '../css/TodoList.css';
+import '../css/todoList.css';
 
 const TodoList = () => {
 	const [todos, setTodos] = useState([]);
@@ -14,8 +14,8 @@ const TodoList = () => {
 
 	// Todo 임시 저장
 	useEffect(() => {
-		localStorage.setItem('todos', JSON.stringify(todos), [todos]);
-	});
+		localStorage.setItem('todos', JSON.stringify(todos));
+	}, [todos]);
 
 	// Todo 추가
 	const addTodo = (e) => {

@@ -4,11 +4,13 @@
     margin-bottom: 20px;
 }
 
-h1 {
+h1,
+.pageDesc {
     text-align: center;
 }
 
 .links {
     display: flex;
     justify-content: space-evenly;
+    margin: 20px 0 60px 0;
 }

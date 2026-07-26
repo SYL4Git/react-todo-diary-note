@@ -53,7 +53,7 @@ const Weather = () => {
 			if (cityName) {
 				const weatherData = await fetchWeatherData(
 					location.lat,
-					location.lon
+					location.lon,
 				);
 				setWeatherData(weatherData);
 			}

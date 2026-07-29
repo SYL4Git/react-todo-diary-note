@@ -6,21 +6,23 @@ const DiaryContent = () => {
 
 	useEffect(() => {
 		console.log('3 useeffect 실행됨');
-		const saved = localStorage.getItem('diaryList');
-		if (saved) {
-			setDiaryList(JSON.parse(saved));
+		const load = localStorage.getItem('diaryList');
+		if (load) {
+			setDiaryList(JSON.parse(load));
 		}
 	}, []);
 	console.log('2 return 직전');
 	return (
 		<section className='diaryContent'>
 			<div className='diaryContainer'>
-				<dl>
-					<dt className='diaryDateContainer'>날짜: </dt>
-					<dd className='diaryDate'></dd>
-					<dt className='diaryTitleContainer'>제목: </dt>
-					<dd className='diaryTitle'></dd>
-				</dl>
+				{diaryList.map((diary) => (
+					<dl key={diary.date}>
+						<dt className='diaryDateContainer'>날짜: </dt>
+						<dd className='diaryDate'>{diary.date}</dd>
+						<dt className='diaryTitleContainer'>제목: </dt>
+						<dd className='diaryTitle'>{diary.title}</dd>
+					</dl>
+				))}
 			</div>
 		</section>
 	);

@@ -6,9 +6,9 @@ const DiaryContent = () => {
 
 	useEffect(() => {
 		console.log('3 useeffect 실행됨');
-		const load = localStorage.getItem('diaryList');
-		if (load) {
-			setDiaryList(JSON.parse(load));
+		const saved = localStorage.getItem('diaryList');
+		if (saved) {
+			setDiaryList(JSON.parse(saved));
 		}
 	}, []);
 	console.log('2 return 직전');

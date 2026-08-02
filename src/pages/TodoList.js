@@ -50,6 +50,10 @@ const TodoList = () => {
 	return (
 		<section className='todo'>
 			<div className='todoInsertContainer'>
+				<div className='pgDesc'>
+					해야 할 일 등을 입력하고 각 항목들을 달성 시 달성률을 확인할 수
+					있습니다.
+				</div>
 				<form onSubmit={addTodo} className='todo-form'>
 					<input
 						type='text'

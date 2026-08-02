@@ -35,6 +35,9 @@ const Notes = () => {
 	};
 	return (
 		<section className='notes'>
+			<div className='pgDesc'>
+				기억해 놓아야 할 것들을 적어 놓고 다시 확인할 수 있습니다.
+			</div>
 			<div className='notesInsertContainer'>
 				<form onSubmit={addNotes} className='notes-form'>
 					<input
